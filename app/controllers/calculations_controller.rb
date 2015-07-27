@@ -29,6 +29,19 @@ class CalculationsController < ApplicationController
     render("random.html.erb")
   end
 
+  def payment
+
+  	 @user_rate = params["rate"]
+  	 @user_term = params["term"]
+  	 @user_balance = params["balance"]
+  	 @rate = @user_rate.to_f /100
+  	 @term = @user_term.to_i
+  	 @balance = @user_balance.to_i
+
+  	 @payment = ((@rate / 100 / 12) * @balance) / (1 - ((1 + (@rate / 100 / 12)) ^ (-@term * 12)))
+
+    render("payment.html.erb")
+  end
 
 
 
