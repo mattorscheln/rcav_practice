@@ -19,6 +19,16 @@ class CalculationsController < ApplicationController
     render("square_root.html.erb")
   end
 
+  def random
+
+  	 @user_number1 = params["number1"]
+  	 @user_number2 = params["number2"]
+  	 @num1 = @user_number1.to_i
+  	 @num2 = @user_number2.to_i
+  	 @random = rand(@num1..@num2)
+    render("random.html.erb")
+  end
+
 
 
 
