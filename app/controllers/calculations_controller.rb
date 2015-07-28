@@ -34,11 +34,12 @@ class CalculationsController < ApplicationController
   	 @user_rate = params["rate"]
   	 @user_term = params["term"]
   	 @user_balance = params["balance"]
-  	 @rate = @user_rate.to_f /100
+  	 @rate = @user_rate.to_f
   	 @term = @user_term.to_i
   	 @balance = @user_balance.to_i
 
-  	 @payment = ((@rate / 100 / 12) * @balance) / (1 - ((1 + (@rate / 100 / 12)) ^ (-@term * 12)))
+  	 @payment = ((@rate / 10000 / 12) * @balance) / (1 - ((1 + (@rate / 10000 / 12)) ** (-@term * 12)))
+  	 @pmt = @payment.round(2)
 
     render("payment.html.erb")
   end
